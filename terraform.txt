@@ -1,0 +1,40 @@
+## Treinamento do Terraform ##
+# Não utilizar variáveis dentro do bloco terraform, pois ele é o primeiro a ser executado e ocorrerá falha.
+
+- Provider
+    Expõem os recursos possibilitando a criação da infra
+- Resource
+    É o recurso que quero subir na nuvem.
+- Remote State
+    Terraform grava o armazenamento de dados em um local que todos podem ter acesso, o tfstate não fica local
+- Data
+    Serve para pegar as informações da conta, seja AWS, Azure etc.
+- Locals
+    Serve para escrevermos apenas uma vez aquilo que será repetido em vários lugares, porém para utilizarmos devemos
+    passar local (no singular) vide: 01-terraform-basico/04-interpolacao-locals-outputs/locals.tf
+- Output
+    Retorno de uma função quando quiser mostrar algo na tela, usado com módulos ou remote state
+- Lookup
+    Recupera o valor de um único elemento de um mapa, dada sua chave
+
+# Caso não passe o valor default das variáveis, ao rodar o "terraform plan" será solicitado informar o valor para elas.
+
+## Basic command ##
+- Init the terraform
+	terraform init
+- check the execution
+	terraform plan
+	# Salva o retorno em um arquivo para rodar com o apply depois
+	terraform plan -out='<nome_arquivo>'
+	# Se não tiver setado o valor da variável default, podemos rodar da seguinte forma
+	terraform plan -var="<nome_variavel>=<valor_variavel>" -var="<nome_variavel>=<valor_variavel>"
+- build de infrastructure
+	terraform apply
+	terraform apply -auto-approve # Não precisa de digitar yes para confirmar
+- show infrastructure
+	terraform show
+- destroy all the infrastructure
+	terraform destroy
+- Format cod terraform
+    terraform fmt
+    terraform fmt -recursive # Para formatar o código em várias pastas
